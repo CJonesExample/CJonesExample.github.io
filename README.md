@@ -1,22 +1,27 @@
-today in class we will take a quiz
+# This is markdown
 
-# Markdown
-
-after the quiz, we will learn Markdown
-afdfadsfads
+makrdown is a powerful formatting language, that is optimized for reading
 
 
-## Here's some things you can do with Markdown
+## Markdown Formatting
 
-You can do all kinds of things
+asdfasdf
 
-* Headers
-* Smaller headers
-* Paragraphs
-* Lists
+### Lists
 
-### asdfas
+Here is an example of a list
 
-#### asdfasf
+- first
+- second
+- third
+
+* first
+* second
+*third
+
+1. first
+2. second
+3. third
 
 
+### Paragraphs
