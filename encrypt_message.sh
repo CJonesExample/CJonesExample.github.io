@@ -34,17 +34,32 @@ else
     cp rsa_encryption_activity/partner_keys.pub rsa_encryption_activity/partner_key.pub
 fi
 
-# Convert the selected key to PEM format
-ssh-keygen -f rsa_encryption_activity/partner_key.pub -e -m PEM > rsa_encryption_activity/partners_public_key.pem
-
 # Prompt the user for a secret message
 read -p "Enter the secret message you want to encrypt: " secret_message
 
 # Write the secret message to a file
 echo -n "$secret_message" > rsa_encryption_activity/send/secret_message.txt
 
-# Encrypt the message using the selected PEM public key
-cat rsa_encryption_activity/send/secret_message.txt | openssl pkeyutl -encrypt -pubin -inkey rsa_encryption_activity/partners_public_key.pem | base64 > rsa_encryption_activity/send/encrypted_message.b64
+# Check the version of OpenSSL
+openssl_version=$(openssl version)
+
+if [[ "$openssl_version" =~ ^OpenSSL ]]; then
+    # Convert the selected key to PEM format
+    ssh-keygen -f rsa_encryption_activity/partner_key.pub -e -m PEM > rsa_encryption_activity/partners_public_key.pem
+
+    # Encrypt the message using the selected PEM public key
+    cat rsa_encryption_activity/send/secret_message.txt | openssl pkeyutl -encrypt -pubin -inkey rsa_encryption_activity/partners_public_key.pem | base64 > rsa_encryption_activity/send/encrypted_message.b64
+elif [[ "$openssl_version" =~ ^LibreSSL ]]; then
+    # Different version of the code for LibreSSL
+    # Convert the selected key to PKCS8 format
+    ssh-keygen -f rsa_encryption_activity/partner_key.pub -e -m PKCS8 > rsa_encryption_activity/partners_public_key.pem
+
+    # Encrypt the message using the selected PEM public key with LibreSSL
+    cat rsa_encryption_activity/send/secret_message.txt | openssl rsautl -encrypt -pubin -inkey rsa_encryption_activity/partners_public_key.pem | base64 > rsa_encryption_activity/send/encrypted_message.b64
+else
+    echo "Unsupported OpenSSL version: $openssl_version"
+    exit 1
+fi
 
 # Inform the user that the message has been encrypted
 echo "Your message has been encrypted and saved to rsa_encryption_activity/send/encrypted_message.b64."
