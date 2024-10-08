@@ -21,7 +21,13 @@ blah blah blah
 [this is the text that is displayed](www.example.com)
 ![this is the text](../images/monkey_selfie.jpg)
 
+## My favorite cartoon cats
 
+|Name     | Facts         |
+| -----   | --------      |
+|Garfield | Likes Lasagna |
+|Tom      | Chases Jerry  |
+|Meowth   | That's right! |
 
 
 
