@@ -19,7 +19,7 @@ blah blah blah
 ## here's a link
 
 [this is the text that is displayed](www.example.com)
-![this is the text](../../images/monkey_selfie.jpg)
+![this is the text](../images/monkey_selfie.jpg)
 
 
 
