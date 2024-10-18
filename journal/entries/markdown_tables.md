@@ -19,7 +19,12 @@ blah blah blah
 
 ## Now let's work on links
 
-[I like youtube](youtube.com)
+[I like youtube](http://www.youtube.com)
+
+## Now let's work on pictures
+
+![here's a picture of a horse](horse.jpg)
+
 
 ## Now let's do tables
 
