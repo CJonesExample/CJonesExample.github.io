@@ -107,6 +107,3 @@ function renderErrorFooter() {
 // Call the init function when the DOM is fully loaded
 document.addEventListener('DOMContentLoaded', init);
 
-setInterval(function(){
-    window.location.reload(1);
-}, 30000);
