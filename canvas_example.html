@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Self Portrait</title>
+    <script src="js/init.js"></script>
+    <style>
+        canvas{
+            display:block;
+            border:1px solid;
+            margin:auto;
+            margin-top:50px
+        }
+    </style>
+</head>
+<body>
+
+<!--note: set the width and height
+using HTML attributes, not CSS!-->
+<canvas id="myCanvas" width="400" height="400"></canvas>
+  
+  <script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    //fill the entire background with green
+    ctx.fillStyle = 'green';
+    ctx.fillRect(0,0,400,400);
+
+    //a big grey rectangle, using hex colors
+    ctx.fillStyle = "#999999";
+    ctx.fillRect(10, 10, 200, 100);
+
+    //a blue square
+    ctx.fillStyle = "blue";
+    ctx.fillRect(100,100,100,100);
+
+    //a blue half-circle with a thick red outline
+    ctx.strokeStyle = "red";
+    ctx.lineWidth=10;
+    ctx.beginPath();
+    ctx.arc(100,300,25,0,Math.PI);
+    ctx.stroke();
+    ctx.fill();
+
+    //a yellow ellipse
+    ctx.fillStyle='lemonchiffon';
+    ctx.beginPath();
+    ctx.ellipse(200,200,100,50,0.25*Math.PI,0,2*Math.PI);
+    ctx.fill();
+
+    //a weird purple polygon
+    //notice that the polygon closes itself 
+    //but the stroke doesn't
+    ctx.fillStyle='purple'
+    ctx.beginPath();
+    ctx.moveTo(350,350);
+    ctx.lineTo(250,350);
+    ctx.lineTo(220,220);
+    ctx.lineTo(370,160);
+    ctx.lineTo(300,300);
+    ctx.stroke();
+    ctx.fill();
+  </script>
+</body>
