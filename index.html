@@ -9,27 +9,36 @@
 body{
     font-family:'Helvetica',"Arial",sans-serif;
 }
+canvas{
+    display:block;
+    margin:auto;
+    transition:transform ease-in-out 0.5s;
+}
+canvas:hover{
+    transform:rotate(180deg);
+}
+img{
+    display:block;
+    margin:auto;
+}
 </style>
+
 </head>
 <body style="background-color:orange">
     
-    <h1 style="background-color:red">    Hello! Welcome to my website!</h1>
+    <h1 style="background-color:red">Hi! I'm Chris</h1>
+    <a href="journal/">Click here to read my journal</a>
 
-<a href="journal/" style="background-color:blue">Click here to read my journal</a>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <script src="js/portrait.js"></script>
+
 <br>
-<img src="images/cody_at_small.jpg"
-alt="Me and my son hiking"
-srcset="images/cody_at_small.jpg 480w,
-    images/cody_at_medium.jpg 800w,
-    images/cody_at_large.jpg 1200w"
-sizes="(max-width: 480px) 95vw,
-    (max-width: 800px) 45vw,
-    30vw">
 
-<h1> here's a picture of my cat</h1>
+
+<h1> here's a picture of my cat. You should boop her nose.</h1>
 <img src="images/jelly.jpg" usemap="#image-map">
 <map name="image-map">
-    <area target="_blank" alt="nose" title="nose" href="https://cat-bounce.com/" coords="80,180,120,210" shape="rect">
+    <area alt="nose" title="nose" onclick="alert('thanks for the boop!')" coords="80,180,120,210" shape="rect">
 </map>
 </body>
 </html>
