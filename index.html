@@ -5,42 +5,37 @@
     <title>PAGE TITLE</title>
     <script src="js/init.js"></script>
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon">
-<style>
-body{
-    font-family:'Helvetica',"Arial",sans-serif;
-}
-canvas{
-    display:block;
-    margin:auto;
-    transition:transform ease-in-out 0.5s;
-}
-canvas:hover{
-    transform:rotate(180deg);
-}
-img{
-    display:block;
-    margin:auto;
-}
-</style>
-
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body style="background-color:orange">
-    
-    <h1 style="background-color:red">Hi! I'm Chris</h1>
-    <a href="journal/">Click here to read my journal</a>
+    <div id="head">  
+        <h1 style="background-color:red">Hi! I'm Chris</h1>
+    </div>
+    <div id="main">
 
-    <canvas id="myCanvas" width="400" height="400"></canvas>
-    <script src="js/portrait.js"></script>
+        <canvas id="myCanvas" width="400" height="400"></canvas>
+        <script src="js/portrait.js"></script>
+        
 
-<br>
-
-
-<h1> here's a picture of my cat. You should boop her nose.</h1>
-<img src="images/jelly.jpg" usemap="#image-map" alt="a cute cat">
-<map name="image-map">
-    <area alt="nose" href="#" title="nose" onclick="alert('thanks for the boop!')" coords="80,180,120,210" shape="rect">
-</map>
+        <figure>
+        <img src="images/jelly.jpg" usemap="#image-map" alt="a cute cat">
+        <figcaption>
+        here's a picture of my cat. You should boop her nose.
+        </figcaption>
+        </figure>
+        <map name="image-map">
+            <area alt="nose" href="#" title="nose" 
+            onclick="alert('thanks for the boop!')" 
+            coords="80,180,120,210" shape="rect">
+        </map>
+    </div>
+    <div id="sidebar">
+        <a href="journal/">Click here to read my journal</a>
+    </div>
+    <footer>
+        <p>This site made by Chris Jones as a demonstration for ITD110</p>
+    </footer>
 </body>
+
 </html>
-
-
