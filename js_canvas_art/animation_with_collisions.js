@@ -5,16 +5,16 @@ let x = 0;
 let dx = 5;
 let y = 0;
 let dy =1; 
-
-let frame = 0;
+let score = 0;
+let gameRunning = true;
 
 //this is an object
 //we access values in an object like  this:
 //player.x 
 const player = {
     //key:value pair
-    x : 0,
-    y : 0,
+    x : 200,
+    y : 200,
     color: 'green',
     speed: 3
 };
@@ -34,7 +34,7 @@ function drawRect(x,y) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = 'blue';
     ctx.fillRect(x,y,50,50);
-    ctx.fill();
+    //ctx.fill();
 }
 
 function drawPlayer(){
@@ -64,59 +64,86 @@ function movePlayer(){
     if(keys['ArrowUp']){
         player.y -= player.speed;
     }
-    if(keys['ArrowLeft']){
+    if(keys['ArrowLeft'] && 
+    player.x > 50){
         player.x -= player.speed;
     }
-    if(keys['ArrowRight']){
+    if(keys['ArrowRight'] && player.x < 350){
         player.x += player.speed;
     }
+    //TODO: what  happens if the player
+    //goes off the edge of the screen??
+    if(player.y < 0){
+        player.y = 400;
+    }
+    if (player.y > 400){
+        player.y = 0;
+    }
+
 }
 
-function score(){
-    frame += 1;
+function drawScore(){
     ctx.font = "10px Arial";
-    ctx.fillText(frame, 10,10);
+    ctx.fillText(score, 10,10);
 }
 
 function checkCollision(){
-    playerMinX = player.x-20;
-    playerMaxX = player.x+20;
-    boxMinX = x;
-    boxMaxX = x+50;
-    boxMinY = y;
-    boxMaxY = y+50;
+    let boxMinX = x;
+    let boxMaxX = x+50;
+    let playerMinX = player.x - 20;
+    let playerMaxX = player.x + 20;
 
-    if(playerMinX > playerMaxX && playerMaxX)
+    let boxMinY = y;
+    let boxMaxY = y + 50;
+    let playerMinY = player.y - 20;
+    let playerMaxY = player.y + 20;
+
+    if((playerMinX <= boxMaxX) && (playerMaxX >= boxMinX)
+    && (playerMinY <= boxMaxY) && (playerMaxY >= boxMinY)){
+        gameRunning = false;
+    }
+
 }
 
+
 function animate() {
-    drawRect(x,y);
-    movePlayer();
-    drawPlayer();
-    score();
+    if(gameRunning){
+        score++;
 
-    // This code handles the position of the bouncing box.
-    //We probably should have separated it out into a function
-    //called moveBox()
-    x = x + dx;
-    y = y + dy;
 
-    if(x > 350){
-        dx = dx * -1;
-    }
-    if(x < 0){
-        dx = dx * -1;
-    }
+        drawRect(x,y);
+        drawScore();
+        movePlayer();
+        drawPlayer();
+        checkCollision();
 
-    if(y > 350){
-        dy = dy * -1;
-    }
-    if(y < 0){
-        dy = dy * -1;
-    }
+        // This code handles the position of the bouncing box.
+        //We probably should have separated it out into a function
+        //called moveBox()
+        x = x + dx;
+        y = y + dy;
 
-    //this schedules the next call of this function for 1/60
-    //of a second from now
+        if(x > 350){
+            dx = dx * -1.1;
+            dy += Math.random();
+        }
+        if(x < 0){
+            dx = dx * -1.1;
+            dy += Math.random();
+        }
+
+        if(y > 350){
+            dy = dy * -1.1;
+            dx += Math.random();
+        }
+        if(y < 0){
+            dy = dy * -1.1;
+            dx += Math.random();
+        }
+
+        //this schedules the next call of this function for 1/60
+        //of a second from now
+    }
     requestAnimationFrame(animate);
 }
 

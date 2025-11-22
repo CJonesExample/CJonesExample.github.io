@@ -19,6 +19,23 @@ const player = {
     speed: 3
 };
 
+const listOfballs = [
+    {x:0,y:200,speed:5},
+    {x:100, y:500,speed:2}
+]
+
+function addNewBall(){
+    listOfballs.push({
+        x:Math.random()
+        , y:Math.random()
+        , speed: Math.random()
+    })
+}
+
+function moveAllBalls(){
+    listOfballs.forEach((b) => (b.x += b.speed; b.y+=5))
+}
+
 //this is also an object. We'll add the keys later.
 //we access values from this kind of object
 //like this:
